@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "../../config/axiosConfig";
-import { DateTime } from "luxon";
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content'
 import { toast } from 'react-toastify';
@@ -228,10 +227,10 @@ export const DataProvider = ({ children }) => {
     }
 
     const loginGoogle = () => {
-        window.open("http://localhost:8080/api/sessions/google", "_self")
+        window.open("https://server55650-production.up.railway.app/api/sessions/google", "_self")
     }
     const loginGithub = () => {
-        window.open("http://localhost:8080/api/sessions/github", "_self")
+        window.open("https://server55650-production.up.railway.app/api/sessions/github", "_self")
     }
 
     function handleemptycart(cid) {

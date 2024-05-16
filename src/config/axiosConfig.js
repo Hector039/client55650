@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:8080/api/",
-    proxy: {
+    baseURL: "https://server55650-production.up.railway.app/api/",
+    /* proxy: {
         host: "localhost",
         port: 5173
-    }
+    } */
 });
 
 axiosInstance.interceptors.response.use(

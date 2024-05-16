@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react"
 import { DataContext } from "../context/dataContext"
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Cart() {
     const { user, cart, handleemptycart, deleteprod, getUserCart, buyCart } = useContext(DataContext);
