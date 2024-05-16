@@ -141,11 +141,14 @@ export const DataProvider = ({ children }) => {
                     setUser(response.data);
                     setUserAvatar(response.data.avatar)
                     cartQuantity(response.data.cart.products)
-                    window.location.replace("https://hector039.github.io/client55650");
+                    window.location.assign("https://hector039.github.io/client55650");
                 });
             })
             .catch(error => {
-                if (error.response.statusText === "Unauthorized") return toast.error(error.response.data.error);
+                if (error.response.statusText === "Unauthorized") {
+                    toast.error(error.response.data.error)
+                    return 
+                };
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
             })
     }
@@ -199,14 +202,14 @@ export const DataProvider = ({ children }) => {
                     showConfirmButton: false,
                     timer: 1500
                 }).then(result => {
-                    window.location.replace("https://hector039.github.io/client55650/account");
+                    window.location.assign("https://hector039.github.io/client55650/account");
                 });
             })
             .catch(error => {
                 if (error.response.data.code === 1) {
                     toast.error(error.response.data.message)
                     setTimeout(() => {
-                        window.location.replace("https://hector039.github.io/client55650/passrestoration");
+                        window.location.assign("https://hector039.github.io/client55650/passrestoration");
                     }, 2000)
                     return
                 };
@@ -219,7 +222,7 @@ export const DataProvider = ({ children }) => {
         axios.get(urlUserLogout, { withCredentials: true })
             .then(response => {
                 setUser(null);
-                window.location.replace("https://hector039.github.io/client55650/logout");
+                window.location.assign("https://hector039.github.io/client55650/logout");
             })
             .catch(error => {
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
