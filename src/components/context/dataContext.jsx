@@ -5,6 +5,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { redirect } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal)
 export const DataContext = createContext([]);
@@ -141,13 +142,13 @@ export const DataProvider = ({ children }) => {
                     setUser(response.data);
                     setUserAvatar(response.data.avatar)
                     cartQuantity(response.data.cart.products)
-                    window.location.assign("/");
+                    redirect("/");
                 });
             })
             .catch(error => {
                 if (error.response.statusText === "Unauthorized") {
                     toast.error(error.response.data.error)
-                    return 
+                    return
                 };
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
             })
@@ -202,14 +203,14 @@ export const DataProvider = ({ children }) => {
                     showConfirmButton: false,
                     timer: 1500
                 }).then(result => {
-                    window.location.assign("/account");
+                    redirect("/account");
                 });
             })
             .catch(error => {
                 if (error.response.data.code === 1) {
                     toast.error(error.response.data.message)
                     setTimeout(() => {
-                        window.location.assign("/passrestoration");
+                        redirect("/passrestoration");
                     }, 2000)
                     return
                 };
@@ -222,7 +223,7 @@ export const DataProvider = ({ children }) => {
         axios.get(urlUserLogout, { withCredentials: true })
             .then(response => {
                 setUser(null);
-                window.location.assign("/logout");       
+                redirect("/logout");
             })
             .catch(error => {
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
@@ -273,24 +274,24 @@ export const DataProvider = ({ children }) => {
     }
 
     function buyCart(cid) {
-                initMercadoPago(import.meta.env.VITE_MP_PUBLIC_TOKEN, { locale: "es-AR"});
-                axios.get(urlBuyCart + "/" + cid, { withCredentials: true })
-                    .then((response) => {
-                        MySwal.fire({
-                            title: "Confirmar compra?",
-                            text: "Los items no disponibles no se procesarán y permanecerán en tu carrito.",
-                            icon: "warning",
-                            html: <Wallet initialization={{ preferenceId: response.data.id }} customization={{ texts: { valueProp: 'smart_option' } }} />,
-                            showCancelButton: true,
-                            showConfirmButton: false,
-                            cancelButtonColor: "#d33"
-                        })
-                    })
-                    .catch(error => {
-                        if (error.response.data.code === 4) return toast.error(error.response.data.message);
-                        toast.error('Ocurrió un error inesperado. Intenta de nuevo');
-                    })
-            }
+        initMercadoPago(import.meta.env.VITE_MP_PUBLIC_TOKEN, { locale: "es-AR" });
+        axios.get(urlBuyCart + "/" + cid, { withCredentials: true })
+            .then((response) => {
+                MySwal.fire({
+                    title: "Confirmar compra?",
+                    text: "Los items no disponibles no se procesarán y permanecerán en tu carrito.",
+                    icon: "warning",
+                    html: <Wallet initialization={{ preferenceId: response.data.id }} customization={{ texts: { valueProp: 'smart_option' } }} />,
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonColor: "#d33"
+                })
+            })
+            .catch(error => {
+                if (error.response.data.code === 4) return toast.error(error.response.data.message);
+                toast.error('Ocurrió un error inesperado. Intenta de nuevo');
+            })
+    }
 
     const getUserTickets = (userEmail) => {
         axios.get(urlUserTicket + "/" + userEmail, { withCredentials: true })

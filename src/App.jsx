@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <DataProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/client55650">
       <NavBar/>
         <Routes>
           <Route path={"/"} element={<ProductsContainer />} />
