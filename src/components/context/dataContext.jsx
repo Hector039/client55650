@@ -142,7 +142,7 @@ export const DataProvider = ({ children }) => {
                     setUser(response.data);
                     setUserAvatar(response.data.avatar)
                     cartQuantity(response.data.cart.products)
-                    redirect("/");
+                    redirect("https://hector039.github.io/client55650");
                 });
             })
             .catch(error => {
@@ -203,14 +203,14 @@ export const DataProvider = ({ children }) => {
                     showConfirmButton: false,
                     timer: 1500
                 }).then(result => {
-                    redirect("/account");
+                    redirect("https://hector039.github.io/client55650/account");
                 });
             })
             .catch(error => {
                 if (error.response.data.code === 1) {
                     toast.error(error.response.data.message)
                     setTimeout(() => {
-                        redirect("/passrestoration");
+                        redirect("https://hector039.github.io/client55650/passrestoration");
                     }, 2000)
                     return
                 };
@@ -223,7 +223,7 @@ export const DataProvider = ({ children }) => {
         axios.get(urlUserLogout, { withCredentials: true })
             .then(response => {
                 setUser(null);
-                redirect("/logout");
+                redirect("https://hector039.github.io/client55650/logout");
             })
             .catch(error => {
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
