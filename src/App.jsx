@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { DataProvider } from "./components/context/dataContext";
 import ProductsContainer from "./components/ProductsContainer/ProductsContainer";
 import Cart from './components/Cart/Cart';
@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <DataProvider>
-      <BrowserRouter basename="/client55650">
+      <HashRouter basename="/client55650">
       <NavBar/>
         <Routes>
           <Route exact path={"/"} element={<ProductsContainer />} />
@@ -34,7 +34,7 @@ export default function App() {
           <Route exact path={"/contact"} element={<Contact />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
 
       <ToastContainer
         position="top-right"

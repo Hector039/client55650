@@ -222,7 +222,7 @@ export const DataProvider = ({ children }) => {
         axios.get(urlUserLogout, { withCredentials: true })
             .then(response => {
                 setUser(null);
-                window.location.assign("/logout");
+                window.location.assign("https://hector039.github.io/client55650/logout");
             })
             .catch(error => {
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
