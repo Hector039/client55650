@@ -15,7 +15,6 @@ const urlProdSearch = "products/searchproducts"
 const urlCart = "carts"
 const urlBuyCart = "tickets/createpreference"
 const urlUserLogin = "sessions/login"
-const urlUserLogout = "sessions/logout"
 const urlUserRegister = "sessions/signin"
 const urlUserForgot = "sessions/forgot"
 const urlUserTicket = "tickets"
@@ -219,17 +218,6 @@ export const DataProvider = ({ children }) => {
             })
     }
 
-    const logout = () => {
-        axios.get(urlUserLogout, { withCredentials: true })
-            .then(response => {
-                setUser(null);
-                //redirect("https://hector039.github.io/client55650/logout");
-            })
-            .catch(error => {
-                toast.error('Ocurrió un error inesperado. Intenta de nuevo');
-            })
-    }
-
     const loginGoogle = () => {
         window.open("https://server55650-production.up.railway.app/api/sessions/google", "_self")
     }
@@ -325,8 +313,6 @@ export const DataProvider = ({ children }) => {
                     icon: "success",
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "Entendido!"
-                }).then(resp => {
-                    logout()
                 })
             }).catch(error => {
                 if (error.response.status === 409) return toast.error(error.response.data.message);
@@ -479,9 +465,9 @@ export const DataProvider = ({ children }) => {
         <DataContext.Provider value={{
             products, cart, handleemptycart,
             deleteprod, login, newRegister, forgot, user, addProduct, deleteProduct, updateProduct, searchProduct, productsFound,
-            setCategoryFilter, setPriceFilter, setLimitFilter, logout, loginGoogle, loginGithub,
+            setCategoryFilter, setPriceFilter, setLimitFilter, loginGoogle, loginGithub,
             handleAdd, getProduct, productDetail, setPage, buyCart, getUserCart, getUserTickets, ticket, cartQuantity, sendContactMail,
-            cartProdWidget, passRestoration, userTypeSelector, uploads, avatar, userAvatar, setUserAvatar, cleanUsers, setUsersFiltered, usersFiltered,
+            cartProdWidget, passRestoration, userTypeSelector, uploads, avatar, userAvatar, setUserAvatar, setUser, cleanUsers, setUsersFiltered, usersFiltered,
             inactiveUsers, setInactiveUsers, deleteUser, updateUserRole
         }}>
             {children}

@@ -11,7 +11,7 @@ import { DataContext } from "../context/dataContext";
 
 
 export default function NavBar() {
-    const { user, logout, userTypeSelector, userAvatar, setUserAvatar } = useContext(DataContext);
+    const { user, userTypeSelector, userAvatar, setUserAvatar } = useContext(DataContext);
     const dt = DateTime.now().setLocale('es').toLocaleString(DateTime.DATE_MED);
     const [dolars, setDolars] = useState([]);
      
@@ -83,7 +83,7 @@ export default function NavBar() {
                                 return { fontWeight: isActive ? "bold" : "" }
                             }}><img src={user.photo} className="profile-photo" alt="User profile photo" />{user.email}</NavLink>}
                         {user.role === "premium" && <h3 className="user-type-text">Eres {user.role}! </h3>}
-                        <button onClick={logout}>Cerrar sesión</button>
+                        <Link to={"/logout"}><button>Cerrar sesión</button></Link>
                     </div>}
             </div>
             {user !== null && <div className="logout-container">
