@@ -141,7 +141,7 @@ export const DataProvider = ({ children }) => {
                     setUser(response.data);
                     setUserAvatar(response.data.avatar)
                     cartQuantity(response.data.cart.products)
-                    window.location.assign("/client55650");
+                    window.location.assign("/");
                 });
             })
             .catch(error => {
@@ -202,14 +202,14 @@ export const DataProvider = ({ children }) => {
                     showConfirmButton: false,
                     timer: 1500
                 }).then(result => {
-                    window.location.assign("client55650/account");
+                    window.location.assign("/account");
                 });
             })
             .catch(error => {
                 if (error.response.data.code === 1) {
                     toast.error(error.response.data.message)
                     setTimeout(() => {
-                        window.location.assign("client55650/passrestoration");
+                        window.location.assign("/passrestoration");
                     }, 2000)
                     return
                 };
@@ -222,7 +222,7 @@ export const DataProvider = ({ children }) => {
         axios.get(urlUserLogout, { withCredentials: true })
             .then(response => {
                 setUser(null);
-                window.location.assign("client55650/logout");       
+                window.location.assign("/logout");       
             })
             .catch(error => {
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
