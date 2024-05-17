@@ -71,6 +71,7 @@ export const DataProvider = ({ children }) => {
             withCredentials: true
         })
             .then(response => {
+                console.log(response);
                 setUserAvatar(response.data.avatar);
                 toast.success(response.data.message)
             })
@@ -145,7 +146,7 @@ export const DataProvider = ({ children }) => {
             })
             .catch(error => {
                 console.log(error);
-                if (error.response.statusText === "Unauthorized") {
+                if (error.response.status === 401) {
                     toast.error(error.response.data.error)
                     return
                 };
@@ -266,8 +267,8 @@ export const DataProvider = ({ children }) => {
         axios.get(urlBuyCart + "/" + cid, { withCredentials: true })
             .then((response) => {
                 MySwal.fire({
-                    title: "Confirmar compra?",
-                    text: "Los items no disponibles no se procesarán y permanecerán en tu carrito.",
+                    title: "<strong>Confirmar compra?</strong>",
+                    footer: "Los items no disponibles no se procesarán y permanecerán en tu carrito.",
                     icon: "warning",
                     html: <Wallet initialization={{ preferenceId: response.data.id }} customization={{ texts: { valueProp: 'smart_option' } }} />,
                     showCancelButton: true,
