@@ -141,7 +141,7 @@ export const DataProvider = ({ children }) => {
                     setUser(response.data);
                     setUserAvatar(response.data.avatar)
                     cartQuantity(response.data.cart.products)
-                    redirect("https://hector039.github.io/client55650");
+                    window.location.replace("https://hector039.github.io/client55650");
                 });
             })
             .catch(error => {
@@ -202,14 +202,14 @@ export const DataProvider = ({ children }) => {
                     showConfirmButton: false,
                     timer: 1500
                 }).then(result => {
-                    redirect("https://hector039.github.io/client55650/account");
+                    window.location.replace("https://hector039.github.io/client55650/account");
                 });
             })
             .catch(error => {
                 if (error.response.data.code === 1) {
                     toast.error(error.response.data.message)
                     setTimeout(() => {
-                        redirect("https://hector039.github.io/client55650/passrestoration");
+                        window.location.replace("https://hector039.github.io/client55650/passrestoration");
                     }, 2000)
                     return
                 };
