@@ -145,6 +145,7 @@ export const DataProvider = ({ children }) => {
                 });
             })
             .catch(error => {
+                console.log(error);
                 if (error.response.statusText === "Unauthorized") {
                     toast.error(error.response.data.error)
                     return
