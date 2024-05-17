@@ -314,6 +314,8 @@ export const DataProvider = ({ children }) => {
                     icon: "success",
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "Entendido!"
+                }).then(resp => {
+                    window.location.replace("https://hector039.github.io/client55650/logout")
                 })
             }).catch(error => {
                 if (error.response.status === 409) return toast.error(error.response.data.message);
