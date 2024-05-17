@@ -5,7 +5,6 @@ import withReactContent from 'sweetalert2-react-content'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-import { redirect } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal)
 export const DataContext = createContext([]);
