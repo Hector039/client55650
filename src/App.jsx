@@ -14,13 +14,13 @@ import Footer from "./components/Footer/Footer"
 import { ToastContainer } from 'react-toastify';
 import './App.css'
 import PassRestoration from "./components/Forgot/passRestoration";
-import { HashRouter as Router } from "react-router-dom";
+
 
 export default function App() {
 
   return (
     <DataProvider>
-      <Router basename="/client55650">
+      <BrowserRouter basename="/client55650">
       <NavBar/>
         <Routes>
           <Route exact path={"/"} element={<ProductsContainer />} />
@@ -35,7 +35,7 @@ export default function App() {
           <Route exact path={"/contact"} element={<Contact />} />
         </Routes>
         <Footer />
-      </Router>
+      </BrowserRouter>
 
       <ToastContainer
         position="top-right"
