@@ -12,6 +12,7 @@ export const DataContext = createContext([]);
 const urlProd = "products"
 const urlProdSearch = "products/searchproducts"
 const urlCart = "carts"
+const urlUserLogout = "sessions/logout"
 const urlBuyCart = "tickets/createpreference"
 const urlUserLogin = "sessions/login"
 const urlUserRegister = "sessions/signin"
@@ -145,11 +146,7 @@ export const DataProvider = ({ children }) => {
                 });
             })
             .catch(error => {
-                console.log(error);
-                if (error.response.status === 401) {
-                    toast.error(error.response.data.error)
-                    return
-                };
+                if (error.response.data.error) return toast.error(error.response.data.error)
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
             })
     }
@@ -170,7 +167,7 @@ export const DataProvider = ({ children }) => {
                 })
             })
             .catch(error => {
-                if (error.response.statusText && error.response.statusText === "Unauthorized") return toast.error(error.response.data.error);
+                if (error.response.data.error) return toast.error(error.response.data.error);
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
             })
     }
@@ -286,7 +283,7 @@ export const DataProvider = ({ children }) => {
         axios.get(urlUserTicket + "/" + userEmail, { withCredentials: true })
             .then(response => setTicket(response.data))
             .catch(error => {
-                if (error.response.statusText === "Not Found") return toast.error(error.response.data.message);
+                if (error.response.data.code === 4) return toast.error(error.response.data.message);
                 toast.error('Ocurrió un error inesperado. Intenta de nuevo');
             })
     }
@@ -315,7 +312,14 @@ export const DataProvider = ({ children }) => {
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "Entendido!"
                 }).then(resp => {
-                    window.location.replace("https://hector039.github.io/client55650/logout")
+                    axios.get(urlUserLogout, { withCredentials: true })
+                        .then(response => {
+                            setUser(null);
+                            window.location.replace("https://hector039.github.io/client55650")
+                        })
+                        .catch(error => {
+                            toast.error('Ocurrió un error inesperado. Intenta de nuevo');
+                        })
                 })
             }).catch(error => {
                 if (error.response.status === 409) return toast.error(error.response.data.message);
