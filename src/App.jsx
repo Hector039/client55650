@@ -22,16 +22,16 @@ export default function App() {
       <BrowserRouter basename="/client55650">
       <NavBar/>
         <Routes>
-          <Route path={"/"} element={<ProductsContainer />} />
-          <Route path={"/productdetail/:pid"} element={<ProductDetail />} />
-          <Route path={"/usertickets/:email"} element={<UserTickets />} />
-          <Route path={"/cart"} element={<Cart />} />
-          <Route path={"/account"} element={<Account />} />
-          <Route path={"/forgot/:email"} element={<Forgot />} />
-          <Route path={"/passrestoration"} element={<PassRestoration />} />
-          <Route path={"/logout"} element={<Logout />} />
-          <Route path={"/realtimeproducts"} element={<System />} />
-          <Route path={"/contact"} element={<Contact />} />
+          <Route exact path={"/"} element={<ProductsContainer />} />
+          <Route exact path={"/productdetail/:pid"} element={<ProductDetail />} />
+          <Route exact path={"/usertickets/:email"} element={<UserTickets />} />
+          <Route exact path={"/cart"} element={<Cart />} />
+          <Route exact path={"/account"} element={<Account />} />
+          <Route exact path={"/forgot/:email"} element={<Forgot />} />
+          <Route exact path={"/passrestoration"} element={<PassRestoration />} />
+          <Route exact path={"/logout"} element={<Logout />} />
+          <Route exact path={"/realtimeproducts"} element={<System />} />
+          <Route exact path={"/contact"} element={<Contact />} />
         </Routes>
         <Footer />
       </BrowserRouter>
